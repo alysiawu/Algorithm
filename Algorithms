@@ -1,0 +1,4 @@
+//print 1-225
+for (var i = 0; i< 256; i++)
+{print i;}
+//Odd numbers 

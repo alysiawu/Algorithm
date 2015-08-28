@@ -1,0 +1,46 @@
+function SinglyNode(key, value) {
+  this.key = key
+  this.value = value
+  this.next = null
+}
+function SLL() {
+  this.head = null
+  this.upsert = function(key, value) {
+    if(this.head == null) {
+      this.head = new SinglyNode(key, value);
+    } else {
+      var currentNode = this.head;
+      while(currentNode.next != null) {
+        if(currentNode.key == key) {
+          currentNode.value = value;
+          return;
+        }
+        else {
+          currentNode = nextNode;
+        }
+      }
+      currentNode.next = new SinglyNode(key, value);
+      return;
+    }
+  }
+  this.displayNodes= function() {
+    console.log("Printing Nodes")
+    if(this.head != null) {
+      console.log("First Node's Value is", this.head.value);
+      var currentNode = this.head
+      while(currentNode.next != null) {
+        currentNode = currentNode.next
+        console.log("Next Node's Value is", currentNode.value)
+      }
+    } else {
+      console.log("List is empty");
+    }
+  }
+}
+var sll = new SLL()
+sll.upsert("name", "Jay")
+sll.upsert("occupation", "Instructor")
+sll.displayNodes()
+sll.upsert("name", "Ketul")
+sll.displayNodes()
+

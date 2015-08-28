@@ -1,0 +1,21 @@
+function GetUnique(str){
+	var unique = '';
+	var strlen = str. length;
+	for (i = 0; i < strlen; i ++){
+	var is_unique = true; 
+	for (j = 0; j< unique.length; j ++){
+	if (string[i]==string[j]){
+is_unique = false;
+break
+
+	}
+	if (is_unique ){
+	unique += string[i]
+	}
+	}
+
+
+	}
+return uinique;
+
+}
