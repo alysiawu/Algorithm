@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body>
+
+<div id ="result"></div>
+<script type="text/javascript">
+function simplesort(line){
+arr = [];
+
+arr= line.split(' ');
+// console.log(arr);
+
+    for (var i=arr.length-1; i >0; i--){
+        for (var j =0 ; j < i; j++){
+            if (arr[j]>arr[j+1]){
+                // swap
+                var temp = arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+            }
+        }
+    }
+    return arr;
+}
+console.log(simplesort("23 89 -44 90"));
+// console.log(sumofdigits(123456));
+// var fs  = require("fs");
+// fs.readFileSync(process.argv[2]).toString().split('\n').forEach(function (line) {
+//     if (line !== "") { // ignore empty lines
+//         console.log(simplesort(line));
+//     }
+// });
+
+</script>
+</body>
+</html>
