@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Leap Year</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body>
+	<script type="text/javascript">
+<!-- is leap year  leap year is divisble by 4 but not 100, or divisible by 400-->
+function checkLeapYear(year){
+	if((( year%4 ==0) &&(year%100 !=0))||(year%400==0)) {
+		alert (year + " is a leap year");
+		return true;
+	}
+	else{
+		alert (year + " is not a leap year");
+		return false;
+	}
+}
+checkLeapYear(2012);
+checkLeapYear(2013);
+</script>
+</body>
+</html>
