@@ -1,0 +1,78 @@
+<html>
+<head>
+	<title>Trie</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body>
+	<script type="text/javascript">
+
+
+byrne = {}; // create the namespace
+
+/**
+ * @see http://en.wikipedia.org/wiki/Trie
+ * @author Dennis Byrne
+ * @constructor
+ */
+byrne.TrieNode = function(){
+  this.wordCount = 0;
+  this.prefixCount = 0;
+  this.children = [];
+};
+
+byrne.TrieNode.prototype.add = function(word) {
+  if(word){
+    this.prefixCount++;
+    var k = word.charAt(0);
+    (this.children[k] || (this.children[k] = new byrne.TrieNode()))
+      .add(word.substring(1));
+  }else
+    this.wordCount++;
+};
+
+/**
+ * Retrieve the prefix count of the applied argument w/ recursion.
+ */
+byrne.TrieNode.prototype.getPrefixCount = function(word){
+  return word ?
+    this.getCount(word, arguments.callee) : this.prefixCount;
+};
+
+/**
+ * Retrieve the word count of the applied argument w/ recursion.
+ */
+byrne.TrieNode.prototype.getWordCount = function(word){
+  return word ?
+    this.getCount(word, arguments.callee) : this.wordCount;
+};
+
+/**
+ * @private
+ */
+byrne.TrieNode.prototype.getCount = function(word, method){
+  var k = word.charAt(0);
+  return this.children[k] ?
+    method.call(this.children[k], word.substring(1)) : 0;
+};
+
+function testThoughtWorks() {
+  var trie = new byrne.TrieNode(/* root */);
+  trie.add('thought');
+
+  // assertEquals(1, trie.getWordCount('thought'));
+  // assertEquals(0, trie.getPrefixCount('thought'));
+
+  trie.add('thoughtworks');
+console.log(trie);
+  // assertEquals(1, trie.getWordCount('thought'));
+  // assertEquals(1, trie.getPrefixCount('thought'));
+  // assertEquals(1, trie.getWordCount('thoughtworks'));
+  // assertEquals(0, trie.getPrefixCount('thoughtworks'));
+  // assertEquals(0, trie.getWordCount('foo'));
+  // assertEquals(0, trie.getPrefixCount('foo'));
+}
+testThoughtWorks()
+
+</script>
+</body>
+</html>

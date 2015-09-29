@@ -5,12 +5,14 @@
   <meta charset="utf-8">
   <script>
     // your code here
-    function trim(string){
-
-
-
-
-    }
+ function trim(str) {
+    str = str.toString();
+    var begin = 0;
+    var end = str.length - 1;
+    while (begin <= end && str.charCodeAt(begin) < 33) { ++begin; }
+    while (end > begin && str.charCodeAt(end) < 33) { --end; }
+    return str.substr(begin, end - begin + 1);
+}
   </script>
 </head>
 <body>

@@ -1,0 +1,111 @@
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+</head>
+<body>
+<script type="text/javascript">
+var array1 = ["cat", "cater", "cape"]
+var current_word = 0;
+var counter = 0;
+var results = [];
+var temp_word = [];
+var in_x = false;
+
+byrne = {}; // create the namespace
+
+
+byrne.TrieNode = function(){
+   this.wordCount = 0;
+   this.prefixCount = 0;
+   this.children = [];
+   this.max = 0;
+
+};
+
+byrne.TrieNode.prototype.add = function(word) {
+   if(word){
+       this.prefixCount++;
+       var k = word.charAt(0);
+       (this.children[k] || (this.children[k] = new byrne.TrieNode()))
+           .add(word.substring(1));
+   }else
+       this.wordCount++;
+};
+
+byrne.TrieNode.prototype.getPrefixCount = function(word){
+   return word ?
+       this.getCount(word, arguments.callee) : this.prefixCount;
+};
+
+
+byrne.TrieNode.prototype.getWordCount = function(word){
+   return word ?
+       this.getCount(word, arguments.callee) : this.wordCount;
+};
+
+
+byrne.TrieNode.prototype.getCount = function(word, method){
+   var k = word.charAt(0);
+   return this.children[k] ?
+       method.call(this.children[k], word.substring(1)) : 0;
+};
+
+byrne.TrieNode.prototype.inWord = function(letter, children){
+   for(x in children){
+
+       if(letter === x){
+           in_x = true;
+           child1 = (children[x].children)
+           counter++
+           temp_word.push(letter);
+           console.log("trie in", x);
+           console.log("array in", letter)
+       }
+       else{
+           results.push({current_word: temp_word, counter: counter});
+           temp_word = [];
+           current_word++
+           counter = 0;
+
+           console.log("trie out", x);
+           console.log("array out", letter)
+       }
+
+   }
+   if(in_x === false){
+
+   }
+
+}
+
+
+var trie = new byrne.TrieNode();
+var child1 = trie.children;
+
+
+function longest_concat(array){
+   array.forEach(function(value){
+       trie.add(value);
+   })
+   for(var i=0; i<array.length; i++){
+       var word_array = array[i].split("");
+       child1 = trie.children;
+       for(var j=0; j<word_array.length; j++){
+           not_in_x = true;
+           trie.inWord(word_array[j], child1);
+       }
+   }
+
+}
+
+longest_concat(array1);
+console.log(trie)
+console.log("RESULTS:  ", results);
+
+
+
+
+</script>
+</body>
+</html>
